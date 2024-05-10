@@ -1,10 +1,10 @@
 {
-  "name": "assignment-01-krishnawanusha",
+  "name": "educational-platform",
   "version": "1.0.0",
   "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/MhkFIDKy)",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --watch --respawn src/init-dev.ts --fix",
+    "dev": "nodemon -L --exec ts-node-dev -r tsconfig-paths/register src/init-dev.ts",
     "lint": "eslint --ext .js,.ts .",
     "lint-fix": "eslint --ext .js,.ts . --fix",
     "test": "cross-env NODE_ENV=test jest",

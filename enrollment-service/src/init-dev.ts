@@ -8,7 +8,7 @@ import { connectDB } from './config/db'
 
 dotenv.config()
 
-console.log('Starting TimeTable Management System developed by Kr!$h')
+console.log('Starting TimeTable Management System developed by Waseem Ismail')
 
 connectDB()
 
@@ -24,7 +24,7 @@ app.use((req, _res, next) => {
 
 app.get('/', (_, res) =>
   res.json({
-    message: 'Welcome to TimeTable Management System developed by Kr!$h'
+    message: 'Welcome to TimeTable Management System developed by Waseem Ismail'
   })
 )
 

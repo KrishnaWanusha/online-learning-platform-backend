@@ -1,0 +1,39 @@
+version: "3.8"
+services: 
+  authentication-service:
+    build: ./authentication-service
+    container_name: authentication-service_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./authentication-service:/app
+      - D:\y3s2\dsassignment\online-learning-platform-backend/authentication-service/node_modules:/app/node_modules
+
+  course-service:
+    build: ./course-service
+    container_name: course-service_c
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./course-service:/app
+      - D:\y3s2\dsassignment\online-learning-platform-backend/course-service/node_modules:/app/node_modules
+
+  enrollment-service:
+    build: ./enrollment-service
+    container_name: enrollment-service_c
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./authentication-service:/app
+      - D:\y3s2\dsassignment\online-learning-platform-backend/enrollment-service/node_modules:/app/node_modules
+  
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service_c
+    ports:
+      - '6000:6000'
+    volumes:
+      - ./payment-service:/app
+      - D:\y3s2\dsassignment\online-learning-platform-backend/payment-service/node_modules:/app/node_modules
+  
+
