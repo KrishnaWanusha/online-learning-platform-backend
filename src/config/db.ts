@@ -4,10 +4,11 @@ let connection: Mongoose
 
 export const connectDB = async () => {
   if (!connection) {
-    connection = await mongoose.connect(process.env.MONGO_AUTH_DB ?? '', {
+    connection = await mongoose.connect(process.env.MONGO_URI ?? '', {
       bufferCommands: true,
       serverSelectionTimeoutMS: 5000
     })
+    // eslint-disable-next-line no-console
     console.log('Connected to mongodb')
   }
   return connection
