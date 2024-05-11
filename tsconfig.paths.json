@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@helpers/*": ["src/helpers/*"],
-      "@models/*": ["src/models/*"]
-    }
-  }
-}
