@@ -1,39 +1,90 @@
+# version: "3.8"
+# services: 
+#   authentication-service:
+#     build: ./authentication-service
+#     container_name: authentication-service_c
+#     ports:
+#       - '3000:3000'
+#     volumes:
+#       - ./authentication-service:/app
+#       - D:\y3s2\dsassignment\online-learning-platform-backend/authentication-service/node_modules:/app/node_modules
+
+#   course-service:
+#     build: ./course-service
+#     container_name: course-service_c
+#     ports:
+#       - '4000:4000'
+#     volumes:
+#       - ./course-service:/app
+#       - D:\y3s2\dsassignment\online-learning-platform-backend/course-service/node_modules:/app/node_modules
+
+  # enrollment-service:
+  #   build: ./enrollment-service
+  #   container_name: enrollment-service_c
+  #   ports:
+  #     - '5000:5000'
+  #   volumes:
+  #     - ./authentication-service:/app
+  #     - D:\y3s2\dsassignment\online-learning-platform-backend/enrollment-service/node_modules:/app/node_modules
+  
+  # payment-service:
+  #   build: ./payment-service
+  #   container_name: payment-service_c
+  #   ports:
+  #     - '6000:6000'
+  #   volumes:
+  #     - ./payment-service:/app
+  #     - D:\y3s2\dsassignment\online-learning-platform-backend/payment-service/node_modules:/app/node_modules
+  
 version: "3.8"
-services: 
-  authentication-service:
-    build: ./authentication-service
-    container_name: authentication-service_c
+services:
+  gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
     ports:
-      - '3000:3000'
-    volumes:
-      - ./authentication-service:/app
-      - D:\y3s2\dsassignment\online-learning-platform-backend/authentication-service/node_modules:/app/node_modules
-
-  course-service:
-    build: ./course-service
-    container_name: course-service_c
+      - "8000:8000"
+    networks:
+      - app-networks
+    
+  authentication:
+    build:
+      context: ./authentication-service
+      dockerfile: Dockerfile
     ports:
-      - '4000:4000'
-    volumes:
-      - ./course-service:/app
-      - D:\y3s2\dsassignment\online-learning-platform-backend/course-service/node_modules:/app/node_modules
-
-  enrollment-service:
-    build: ./enrollment-service
-    container_name: enrollment-service_c
-    ports:
-      - '5000:5000'
-    volumes:
-      - ./authentication-service:/app
-      - D:\y3s2\dsassignment\online-learning-platform-backend/enrollment-service/node_modules:/app/node_modules
+      - "3000:3000"
+    networks:
+      - app-networks
   
-  payment-service:
-    build: ./payment-service
-    container_name: payment-service_c
+  course:
+    build:
+      context: ./course-service
+      dockerfile: Dockerfile
     ports:
-      - '6000:6000'
-    volumes:
-      - ./payment-service:/app
-      - D:\y3s2\dsassignment\online-learning-platform-backend/payment-service/node_modules:/app/node_modules
+      - "4000:4000"
+    networks:
+      - app-networks
   
+  enrollment:
+    build:
+      context: ./enrollment-service
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-networks
+  
+  payment:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    ports:
+      - "6000:6000"
+    networks:
+      - app-networks
+  
+networks:
+  app-networks:
+    driver: bridge
+
 

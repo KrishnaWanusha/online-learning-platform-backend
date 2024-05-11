@@ -8,7 +8,7 @@ import { connectDB } from './config/db'
 
 dotenv.config()
 
-console.log('Starting TimeTable Management System developed by Waseem Yeah does this')
+console.log('Starting TimeTable Management System developed by Waseem ')
 
 connectDB()
 
