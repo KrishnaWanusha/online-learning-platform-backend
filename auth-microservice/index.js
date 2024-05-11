@@ -4,6 +4,8 @@ import express, { json, urlencoded } from 'express'
 import { connect } from 'mongoose'
 import { config } from 'dotenv'
 
+import authRouter from './routes/auth.route'
+
 config()
 
 const app = express()
@@ -16,6 +18,8 @@ app.use(urlencoded({ extended: true }))
 app.use('/health', (_, res) => {
   res.send('Auth Serive OK')
 })
+
+app.use('/', authRouter)
 
 // MongoDB Connection
 connect(process.env.MONGO_AUTH_URI)

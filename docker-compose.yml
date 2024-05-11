@@ -1,0 +1,54 @@
+version: "3.8"
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      - AUTH_API=http://auth-microservice:5000
+      - COURSE_API=http://course-microservice:6000
+      - ENROLLMENT_API=http://enrollment-microservice:7000
+      - PAYMENT_API=http://payment-microservice:8000
+    depends_on:
+      - auth-microservice
+      - course-microservice
+    networks:
+      - app-network
+
+  auth-microservice:
+    build:
+      context: ./auth-microservice
+    expose:
+      - "5000"
+    networks:
+      - app-network
+
+  course-microservice:
+    build:
+      context: ./course-microservice
+    expose:
+      - "6000"
+    networks:
+      - app-network
+
+  # enrollment-microservice:
+  #   build:
+  #     context: ./enrollment-microservice
+  #   expose:
+  #     - "7000"
+  #   networks:
+  #     - app-network
+
+  # payment-microservice:
+  #   build:
+  #     context: ./payment-microservice
+  #   expose:
+  #     - "8000"
+  #   networks:
+  #     - app-network
