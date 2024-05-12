@@ -1,8 +1,10 @@
 import { AutoIncrementID } from '@typegoose/auto-increment'
 import { Severity, getModelForClass, modelOptions, plugin, prop } from '@typegoose/typegoose'
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
-import { IsEnum, IsInt, IsString } from 'class-validator'
+import { IsInt, IsString } from 'class-validator'
 import mongoose, { Model } from 'mongoose'
+
+import { CourseInterface } from './course.interface'
 
 export enum Faculties {
   SOFTWARE_ENGINEERING = 'Software_Engineering',
@@ -16,29 +18,41 @@ export enum Faculties {
   options: { allowMixed: Severity.ERROR, customName: 'courses' },
   schemaOptions: { collection: 'courses' }
 })
-export class Course extends TimeStamps {
+export class Course extends TimeStamps implements CourseInterface {
   @prop({ unique: true })
   public displayId?: number
 
   @prop()
   @IsString()
-  public name!: string
-
-  @prop({ unique: true })
-  @IsString()
-  public code!: string
+  public title!: string
 
   @prop()
   @IsString()
-  public description?: string
+  public description!: string
+
+  @prop()
+  @IsString()
+  public language!: string
+
+  @prop()
+  @IsString()
+  public image!: string
+
+  @prop()
+  @IsString()
+  public category!: string
 
   @prop()
   @IsInt()
-  public credits!: number
+  public price!: number
 
-  @IsEnum(Faculties)
-  @prop({ type: String, enum: Faculties })
-  public faculty?: Faculties
+  @prop()
+  @IsString()
+  public duration!: string
+
+  @prop({ type: () => [String] })
+  @IsString({ each: true })
+  public lectures?: string[]
 }
 
 const CourseModel = (mongoose.models?.courses as Model<Course>) ?? getModelForClass(Course)
