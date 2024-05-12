@@ -7,7 +7,7 @@ const createToken = (id) => {
 };
 
 // login users
-const loginUser = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -26,25 +26,18 @@ const loginUser = async (req, res) => {
 };
 
 // signup user
-const signupUser = async (req, res) => {
-  const { firstname, lastname, email, password, confirmpassword } = req.body;
+const signup = async (req, res) => {
+  const { username, email, password, confirmpassword } = req.body;
 
   try {
-    const user = await User.signup(
-      firstname,
-      lastname,
-      email,
-      password,
-      confirmpassword
-    );
+    const user = await User.signup(username, email, password, confirmpassword);
 
     // create a token
     const token = createToken(user._id);
     const id = user._id;
-    const isAdmin = user.isAdmin;
-    const name = user.firstname;
+    const username = user.username;
 
-    res.status(200).json({ email, id, isAdmin, name, token });
+    res.status(200).json({ email, id, username, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
