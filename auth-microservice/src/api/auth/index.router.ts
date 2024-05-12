@@ -9,8 +9,6 @@ const authRouter = express.Router()
 authRouter.post('/signup', signupRequestHandler)
 authRouter.post('/login', loginRequestHandler)
 
-authRouter.post('/authenticate', loginRequestHandler)
-
 // refresh token
 authRouter.post('/refresh-token', refreshToken)
 

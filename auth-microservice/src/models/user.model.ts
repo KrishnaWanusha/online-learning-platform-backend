@@ -15,14 +15,14 @@ export enum UserRoles {
   STUDENT = 'Student'
 }
 
-export function generateAccessToken(username: any) {
-  return jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET as string, {
+export function generateAccessToken(payload: any) {
+  return jwt.sign({ payload }, process.env.ACCESS_TOKEN_SECRET as string, {
     expiresIn: '1h'
   })
 }
 
-export function generateRefreshToken(username: any) {
-  return jwt.sign({ username }, process.env.REFRESH_TOKEN_SECRET as string, {
+export function generateRefreshToken(payload: any) {
+  return jwt.sign({ payload }, process.env.REFRESH_TOKEN_SECRET as string, {
     expiresIn: '1y'
   })
 }
@@ -36,7 +36,7 @@ export function generateRefreshToken(username: any) {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(this.password, salt)
     this.password = hashedPassword
-    return await next()
+    return next()
   } catch (e: any) {
     return next(e)
   }

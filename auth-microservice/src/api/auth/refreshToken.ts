@@ -1,5 +1,5 @@
 import { AppError, HttpStatus } from '@helpers/errorHandler'
-import { User, generateAccessToken } from '@models/user.model'
+import { generateAccessToken } from '@models/user.model'
 import { Request, NextFunction, RequestHandler, Response } from 'express'
 import jwt from 'jsonwebtoken'
 
@@ -17,7 +17,7 @@ const refreshToken: RequestHandler = async (
 
     const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET as string)
 
-    const accessToken = generateAccessToken((payload as User)?.username)
+    const accessToken = generateAccessToken(payload)
     res.status(HttpStatus.OK).json({ accessToken })
   } catch (e: any) {
     next(e)

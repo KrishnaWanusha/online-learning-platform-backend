@@ -30,6 +30,7 @@ const courseProxy = createProxyMiddleware({
 })
 
 apiGateway.use((req, _res, next) => {
+  // eslint-disable-next-line no-console
   console.log(req.path, req.method)
   next()
 })
@@ -39,6 +40,7 @@ apiGateway.use('/course', courseProxy)
 
 if (process.env.NODE_ENV !== 'test') {
   apiGateway.listen(process.env.PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`Server is listening at http://localhost:${process.env.PORT}`)
   })
 }

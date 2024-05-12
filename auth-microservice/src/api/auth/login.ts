@@ -29,8 +29,11 @@ const login: RequestHandler = async (
       throw new AppError(HttpStatus.BAD_REQUEST, 'Username or password incorrect')
     }
 
-    const accessToken = generateAccessToken((user as User)?.username)
-    const refreshToken = generateRefreshToken((user as User)?.username)
+    const userObj = user as User
+    const payload = { username: userObj.username, email: userObj.email, role: userObj.role }
+
+    const accessToken = generateAccessToken(payload)
+    const refreshToken = generateRefreshToken(payload)
 
     res.status(HttpStatus.OK).json({ accessToken, refreshToken })
   } catch (e: any) {

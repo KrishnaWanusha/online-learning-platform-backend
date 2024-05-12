@@ -3,7 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import express, { NextFunction, Request, Response } from 'express'
 
-import authRouter from './api/auth/index.router'
+import courseRouter from './api/index.router'
 import { connectDB } from './config/db'
 
 dotenv.config()
@@ -19,10 +19,10 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/health', (_req, res) => {
-  res.send('Auth microservice health ok')
+  res.send('Course microservice health ok')
 })
 
-app.use('/', authRouter)
+app.use('/', courseRouter)
 
 app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   // eslint-disable-next-line no-console
