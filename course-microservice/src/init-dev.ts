@@ -9,7 +9,7 @@ import { connectDB } from './config/db'
 dotenv.config()
 
 // eslint-disable-next-line no-console
-console.log('Starting Auth Microservice...')
+console.log('Starting Course Microservice...')
 
 connectDB()
 
@@ -32,6 +32,6 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
 if (process.env.NODE_ENV !== 'test') {
   app.listen(process.env.PORT, () => {
     // eslint-disable-next-line no-console
-    console.log(`Auth Microservice is listening at http://localhost:${process.env.PORT}`)
+    console.log(`Course Microservice is listening at http://localhost:${process.env.PORT}`)
   })
 }

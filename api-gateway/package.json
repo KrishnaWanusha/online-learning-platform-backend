@@ -2,7 +2,7 @@
   "name": "learnify-backend-api-gateway",
   "version": "1.0.0",
   "scripts": {
-    "dev": "ts-node-dev --watch --respawn ./init-dev.ts --fix",
+    "dev": "ts-node-dev --watch --respawn src/init-dev.ts --fix",
     "lint": "eslint --ext .js,.ts .",
     "lint-fix": "eslint --ext .js,.ts . --fix",
     "test": "cross-env NODE_ENV=test jest",

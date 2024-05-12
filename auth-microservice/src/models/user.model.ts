@@ -11,8 +11,8 @@ import mongoose, { Model } from 'mongoose'
 
 export enum UserRoles {
   ADMIN = 'Admin',
-  FACULTY = 'Faculty',
-  STUDENT = 'Student'
+  INSTRUCTOR = 'Instructor',
+  LEARNER = 'Learner'
 }
 
 export function generateAccessToken(payload: any) {
@@ -63,7 +63,7 @@ export class User extends TimeStamps {
   public email?: string
 
   @IsEnum(UserRoles)
-  @prop({ type: String, enum: UserRoles, default: UserRoles.STUDENT })
+  @prop({ type: String, enum: UserRoles, default: UserRoles.LEARNER })
   public role?: UserRoles
 }
 

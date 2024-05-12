@@ -9,8 +9,8 @@ export enum UserRoles {
   LEARNER = 'Learner'
 }
 
-export const checkPermissions = (user: any, roles: UserRoles[]) => {
-  return user?.role && roles.includes(user.role)
+export const checkPermissions = (payload: any, roles: UserRoles[]) => {
+  return payload?.role && roles.includes(payload.role)
 }
 
 export const AuthenticateToken: (roles?: UserRoles[]) => RequestHandler =
@@ -31,9 +31,8 @@ export const AuthenticateToken: (roles?: UserRoles[]) => RequestHandler =
             if (err) {
               throw new AppError(HttpStatus.FORBIDDEN, 'FORBIDDEN')
             }
-
             if (roles && roles.length > 0) {
-              if (!checkPermissions(payload, roles)) {
+              if (!checkPermissions(payload.payload, roles)) {
                 throw new AppError(HttpStatus.UNAUTHORIZED, "Don't have permission to access")
               }
             }

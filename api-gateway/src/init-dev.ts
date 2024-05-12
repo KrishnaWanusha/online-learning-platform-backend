@@ -11,7 +11,7 @@ console.log('Starting Auth Microservice...')
 export const apiGateway = express()
 
 apiGateway.use(cors())
-apiGateway.use(express.json())
+// apiGateway.use(express.json())
 
 const authProxy = createProxyMiddleware({
   target: process.env.AUTH_API,
