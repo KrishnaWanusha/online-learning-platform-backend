@@ -1,4 +1,4 @@
-import User, { login, signup } from "../models/user.model";
+import User from "../models/user.model";
 import { sign } from "jsonwebtoken";
 import { Types } from "mongoose";
 
@@ -8,18 +8,18 @@ const createToken = (id) => {
 
 // login users
 const login = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
-    const user = await User.login(email, password);
+    const { username, password } = req.body;
+
+    const user = await User.login(username, password);
 
     // create a token
     const token = createToken(user._id);
     const id = user._id;
-    const isAdmin = user.isAdmin;
-    const name = user.firstname;
+    const login = user.username;
+    const role = user.role;
 
-    res.status(200).json({ email, id, isAdmin, name, token });
+    res.status(200).json({ id, email, login, token, role });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -35,9 +35,9 @@ const signup = async (req, res) => {
     // create a token
     const token = createToken(user._id);
     const id = user._id;
-    const username = user.username;
+    const login = user.username;
 
-    res.status(200).json({ email, id, username, token });
+    res.status(200).json({ id, email, login, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -115,8 +115,8 @@ const listAllUsers = async (req, res) => {
 };
 
 export {
-  signupUser,
-  loginUser,
+  login,
+  signup,
   getUserdetails,
   updateUserdetails,
   deleteUserdetails,

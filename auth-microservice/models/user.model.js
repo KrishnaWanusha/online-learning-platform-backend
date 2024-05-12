@@ -24,12 +24,9 @@ const userSchema = new Schema({
   },
 });
 
-const User = model("User", userSchema);
-
 // Static signup method
 userSchema.statics.signup = async function (
-  firstname,
-  lastname,
+  username,
   email,
   password,
   confirmpassword
@@ -67,25 +64,27 @@ userSchema.statics.signup = async function (
 };
 
 // static login method
-userSchema.statics.login = async function (email, password) {
+userSchema.statics.login = async function (username, password) {
   // validation
-  if (!email || !password) {
+  if (!username || !password) {
     throw Error("All fields must be filled");
   }
 
-  const user = await this.findOne({ email });
+  const user = await this.findOne({ username });
 
   if (!user) {
-    throw Error("Incorrect email");
+    throw Error("Incorrect username or password");
   }
 
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
-    throw Error("Incorrect password");
+    throw Error("Incorrect username or password");
   }
 
   return user;
 };
+
+const User = model("User", userSchema);
 
 export default User;
