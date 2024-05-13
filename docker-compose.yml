@@ -11,10 +11,10 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - AUTH_API=http://auth-microservice:5000
-      - COURSE_API=http://course-microservice:6000
-      - ENROLLMENT_API=http://enrollment-microservice:7000
-      - PAYMENT_API=http://payment-microservice:8000
+      - AUTH_API=http://auth-microservice:5001
+      - COURSE_API=http://course-microservice:5002
+      - ENROLLMENT_API=http://enrollment-microservice:5003
+      - PAYMENT_API=http://payment-microservice:5004
     depends_on:
       - auth-microservice
       - course-microservice

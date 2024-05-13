@@ -9,7 +9,7 @@ const getAllCourses: RequestHandler = async (
 ) => {
   try {
     const courses = await CourseModel.find()
-    res.status(HttpStatus.FOUND).json(courses)
+    res.status(HttpStatus.OK).json(courses)
   } catch (e: any) {
     next(e)
   }

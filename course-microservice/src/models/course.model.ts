@@ -18,7 +18,7 @@ export enum Faculties {
   options: { allowMixed: Severity.ERROR, customName: 'courses' },
   schemaOptions: { collection: 'courses' }
 })
-export class Course extends TimeStamps implements  CourseInterface{
+export class Course extends TimeStamps implements CourseInterface {
   @prop({ unique: true })
   public displayId?: number
 
