@@ -30,14 +30,22 @@ const courseProxy = createProxyMiddleware({
 })
 
 const enrollmentProxy = createProxyMiddleware({
-  target: process.env.COURSE_API,
+  target: process.env.ENROLLMENT_API,
   changeOrigin: true,
   pathRewrite: {
     '^/enrollment': '/'
   }
 })
 
-apiGateway.use((req:any, _res:any, next:any) => {
+const paymentProxy = createProxyMiddleware({
+  target: process.env.PAYMENT_API,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/payment': '/'
+  }
+})
+
+apiGateway.use((req: any, _res: any, next: any) => {
   // eslint-disable-next-line no-console
   console.log(req.path, req.method)
   next()
@@ -46,6 +54,7 @@ apiGateway.use((req:any, _res:any, next:any) => {
 apiGateway.use('/auth', authProxy)
 apiGateway.use('/course', courseProxy)
 apiGateway.use('/enrollment', enrollmentProxy)
+apiGateway.use('/payment', paymentProxy)
 
 if (process.env.NODE_ENV !== 'test') {
   apiGateway.listen(process.env.PORT, () => {

@@ -19,7 +19,7 @@ const signup: RequestHandler = async (
     if (!username || !email || !password) {
       throw new AppError(
         HttpStatus.BAD_REQUEST,
-        'Incomplete registration data: Username, email, and password are required'
+        'Incomplete registration data: username, email, and password are required'
       )
     }
 

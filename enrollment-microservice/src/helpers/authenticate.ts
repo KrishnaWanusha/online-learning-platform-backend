@@ -36,7 +36,7 @@ export const AuthenticateToken: (roles?: UserRoles[]) => RequestHandler =
                 throw new AppError(HttpStatus.UNAUTHORIZED, "Don't have permission to access")
               }
             }
-            req.user = payload?.username
+            req.user = payload?.payload?.username
             next()
           } catch (e: any) {
             next(e)

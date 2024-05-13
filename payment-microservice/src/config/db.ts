@@ -9,7 +9,7 @@ export const connectDB = async () => {
       serverSelectionTimeoutMS: 5000
     })
     // eslint-disable-next-line no-console
-    console.log('Enrollment Microservice connected to mongodb')
+    console.log('Payment Microservice connected to mongodb')
   }
   return connection
 }

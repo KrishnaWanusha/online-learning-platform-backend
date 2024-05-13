@@ -1,5 +1,5 @@
-export interface EnrrollmentInterface {
-    courseId?: string
-    User?: string
-    completionStatus?: boolean
-  }
+export interface EnrollmentInterface {
+  courseId?: string
+  user?: string
+  completionStatus?: boolean
+}

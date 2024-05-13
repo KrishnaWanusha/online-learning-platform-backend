@@ -17,7 +17,7 @@
       "plugins": ["@typescript-eslint", "unused-imports"],
       "extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
       "parserOptions": {
-        "project": "./enrollment-microservice/tsconfig.json"
+        "project": "./payment-microservice/tsconfig.json"
       },
       "rules": {
         "prettier/prettier": [
