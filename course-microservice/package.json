@@ -1,5 +1,5 @@
 {
-  "name": "learnify-backend-auth-microservice",
+  "name": "learnify-backend-course-microservice",
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --watch --respawn src/init-dev.ts --fix",

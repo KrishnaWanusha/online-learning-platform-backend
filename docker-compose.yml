@@ -9,7 +9,7 @@ services:
     build:
       context: ./api-gateway
     ports:
-      - "4000:4000"
+      - "5000:5000"
     environment:
       - AUTH_API=http://auth-microservice:5001
       - COURSE_API=http://course-microservice:5002
@@ -25,7 +25,7 @@ services:
     build:
       context: ./auth-microservice
     expose:
-      - "5000"
+      - "5001"
     networks:
       - app-network
 
@@ -33,22 +33,22 @@ services:
     build:
       context: ./course-microservice
     expose:
-      - "6000"
+      - "5002"
     networks:
       - app-network
 
-  # enrollment-microservice:
-  #   build:
-  #     context: ./enrollment-microservice
-  #   expose:
-  #     - "7000"
-  #   networks:
-  #     - app-network
+  enrollment-microservice:
+    build:
+      context: ./enrollment-microservice
+    expose:
+      - "5003"
+    networks:
+      - app-network
 
-  # payment-microservice:
-  #   build:
-  #     context: ./payment-microservice
-  #   expose:
-  #     - "8000"
-  #   networks:
-  #     - app-network
+  payment-microservice:
+    build:
+      context: ./payment-microservice
+    expose:
+      - "5004"
+    networks:
+      - app-network
