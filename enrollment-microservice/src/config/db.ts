@@ -1,7 +1,7 @@
 import mongoose, { Mongoose } from 'mongoose'
 
 let connection: Mongoose
-
+//connect to the db
 export const connectDB = async () => {
   if (!connection) {
     connection = await mongoose.connect(process.env.MONGO_URI ?? '', {
