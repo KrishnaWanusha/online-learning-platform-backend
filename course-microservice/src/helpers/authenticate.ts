@@ -12,7 +12,7 @@ export enum UserRoles {
 export const checkPermissions = (payload: any, roles: UserRoles[]) => {
   return payload?.role && roles.includes(payload.role)
 }
-
+//authenticate
 export const AuthenticateToken: (roles?: UserRoles[]) => RequestHandler =
   (roles) => (req: CustomReq, _res, next) => {
     try {
